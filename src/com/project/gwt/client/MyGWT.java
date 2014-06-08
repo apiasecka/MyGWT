@@ -3,11 +3,13 @@ package com.project.gwt.client;
 import com.project.gwt.shared.FieldVerifier;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Style.Display;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
+import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -25,117 +27,117 @@ public class MyGWT implements EntryPoint {
 			+ "attempting to contact the server. Please check your network "
 			+ "connection and try again.";
 
-	private final GreetingServiceAsync greetingService = GWT
+	private final GreetingServiceAsync greetingService = (GreetingServiceAsync) GWT
 			.create(GreetingService.class);
 
 	/**
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
-    final Button sendButton = new Button("Send");
-    final TextBox nameField = new TextBox();
-    nameField.setText("GWT User");
-    final Label errorLabel = new Label();
+		DOM.getElementById("edit").getStyle().setDisplay(Display.NONE);
+		
+	// Widok wizytówki
+		final Label pictureEditLabel = new Label();
+		final Label nameEditLabel = new Label();
+		final Label adressEditLabel = new Label();
+		final Label phoneEditLabel = new Label();
+		final Label emailEditLabel = new Label();
+		
+		final Button loginButton = new Button("Zaloguj");
+    
+    
+    // Elementy edycji wizytówki
+		final Label nameLabel = new Label();
+		nameLabel.setText("Imie i nazwisko");
+		final TextBox nameField = new TextBox();
+		
+		final Label adressLabel = new Label();
+		adressLabel.setText("Adres");
+		final TextBox adressField = new TextBox();
+	   
+		final Label phoneLabel = new Label();
+		phoneLabel.setText("Telefon");
+	    final TextBox phoneField = new TextBox();
+	    
+	    final Label emailLabel = new Label();
+	    emailLabel.setText("Email");
+	    final TextBox emailField = new TextBox();
+	    
+	    final Label pictureLabel = new Label();
+	    pictureLabel.setText("Obrazek");
+	    final TextBox pictureField = new TextBox();
+	    
+	    final Label loginLabel = new Label();
+	    loginLabel.setText("Login");
+	    final TextBox loginField = new TextBox();
+	    final Label passwordLabel = new Label();
+	    passwordLabel.setText("Haslo");
+	    final TextBox passwordField = new TextBox();
+	    
+	    final Button saveButton = new Button("Zapisz");
+	    final Button logoutButton = new Button("Wyloguj");
+   
+    
+	    
+	    //final TextBox nameField = new TextBox();
+	    //nameField.setText("GWT User");
+	    //final Label errorLabel = new Label();
+	
+	    // We can add style names to widgets
+	    loginButton.addStyleName("Button");
+	    logoutButton.addStyleName("Button");
+	    saveButton.addStyleName("Button");
+	
+	    // Add the nameField and sendButton to the RootPanel
+	    // Use RootPanel.get() to get the entire body element
 
-    // We can add style names to widgets
-    sendButton.addStyleName("sendButton");
+	    RootPanel.get("card").add(pictureEditLabel);
+	    RootPanel.get("card").add(nameEditLabel);
+	    RootPanel.get("card").add(adressEditLabel);
+	    RootPanel.get("card").add(phoneEditLabel);
+	    RootPanel.get("card").add(emailEditLabel);
+	    
+	    RootPanel.get("login").add(loginLabel);
+	    RootPanel.get("login").add(loginField);
+	    RootPanel.get("login").add(passwordLabel);
+	    RootPanel.get("login").add(passwordField);
+	    RootPanel.get("login").add(loginButton);
+	    
+	    RootPanel.get("edit").add(nameLabel);
+	    RootPanel.get("edit").add(nameField);
+	    RootPanel.get("edit").add(adressLabel);
+	    RootPanel.get("edit").add(adressField);
+	    RootPanel.get("edit").add(phoneLabel);
+	    RootPanel.get("edit").add(phoneField);
+	    RootPanel.get("edit").add(emailLabel);
+	    RootPanel.get("edit").add(emailField);
+	    RootPanel.get("edit").add(pictureLabel);
+	    RootPanel.get("edit").add(pictureField);
+	    RootPanel.get("edit").add(saveButton);
+	    RootPanel.get("edit").add(logoutButton);
+	    
+	    
+	    // Create the popup dialog box
+	    /*
+	    final DialogBox dialogBox = new DialogBox();
+	    dialogBox.setText("Remote Procedure Call");
+	    dialogBox.setAnimationEnabled(true);
+	    final Button closeButton = new Button("Close");
+	    // We can set the id of a widget by accessing its Element
+	    closeButton.getElement().setId("closeButton");
+	    final Label textToServerLabel = new Label();
+	    final HTML serverResponseLabel = new HTML();
+	    VerticalPanel dialogVPanel = new VerticalPanel();
+	    dialogVPanel.addStyleName("dialogVPanel");
+	    dialogVPanel.add(new HTML("<b>Sending name to the server:</b>"));
+	    dialogVPanel.add(textToServerLabel);
+	    dialogVPanel.add(new HTML("<br><b>Server replies:</b>"));
+	    dialogVPanel.add(serverResponseLabel);
+	    dialogVPanel.setHorizontalAlignment(VerticalPanel.ALIGN_RIGHT);
+	    dialogVPanel.add(closeButton);
+	    dialogBox.setWidget(dialogVPanel);
+	    */
 
-    // Add the nameField and sendButton to the RootPanel
-    // Use RootPanel.get() to get the entire body element
-    RootPanel.get("nameFieldContainer").add(nameField);
-    RootPanel.get("sendButtonContainer").add(sendButton);
-    RootPanel.get("errorLabelContainer").add(errorLabel);
+	}
 
-    // Focus the cursor on the name field when the app loads
-    nameField.setFocus(true);
-    nameField.selectAll();
-
-    // Create the popup dialog box
-    final DialogBox dialogBox = new DialogBox();
-    dialogBox.setText("Remote Procedure Call");
-    dialogBox.setAnimationEnabled(true);
-    final Button closeButton = new Button("Close");
-    // We can set the id of a widget by accessing its Element
-    closeButton.getElement().setId("closeButton");
-    final Label textToServerLabel = new Label();
-    final HTML serverResponseLabel = new HTML();
-    VerticalPanel dialogVPanel = new VerticalPanel();
-    dialogVPanel.addStyleName("dialogVPanel");
-    dialogVPanel.add(new HTML("<b>Sending name to the server:</b>"));
-    dialogVPanel.add(textToServerLabel);
-    dialogVPanel.add(new HTML("<br><b>Server replies:</b>"));
-    dialogVPanel.add(serverResponseLabel);
-    dialogVPanel.setHorizontalAlignment(VerticalPanel.ALIGN_RIGHT);
-    dialogVPanel.add(closeButton);
-    dialogBox.setWidget(dialogVPanel);
-
-    // Add a handler to close the DialogBox
-    closeButton.addClickHandler(new ClickHandler() {
-      public void onClick(ClickEvent event) {
-        dialogBox.hide();
-        sendButton.setEnabled(true);
-        sendButton.setFocus(true);
-      }
-    });
-
-    // Create a handler for the sendButton and nameField
-    class MyHandler implements ClickHandler, KeyUpHandler {
-      /**
-       * Fired when the user clicks on the sendButton.
-       */
-      public void onClick(ClickEvent event) {
-        sendNameToServer();
-      }
-
-      /**
-       * Fired when the user types in the nameField.
-       */
-      public void onKeyUp(KeyUpEvent event) {
-        if (event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
-          sendNameToServer();
-        }
-      }
-
-      /**
-       * Send the name from the nameField to the server and wait for a response.
-       */
-      private void sendNameToServer() {
-        // First, we validate the input.
-        errorLabel.setText("");
-        String textToServer = nameField.getText();
-        if (!FieldVerifier.isValidName(textToServer)) {
-          errorLabel.setText("Please enter at least four characters");
-          return;
-        }
-        
-        // Then, we send the input to the server.
-        sendButton.setEnabled(false);
-        textToServerLabel.setText(textToServer);
-        serverResponseLabel.setText("");
-        greetingService.greetServer(textToServer, new AsyncCallback<String>() {
-          public void onFailure(Throwable caught) {
-            // Show the RPC error message to the user
-            dialogBox.setText("Remote Procedure Call - Failure");
-            serverResponseLabel.addStyleName("serverResponseLabelError");
-            serverResponseLabel.setHTML(SERVER_ERROR);
-            dialogBox.center();
-            closeButton.setFocus(true);
-          }
-
-          public void onSuccess(String result) {
-            dialogBox.setText("Remote Procedure Call");
-            serverResponseLabel.removeStyleName("serverResponseLabelError");
-            serverResponseLabel.setHTML(result);
-            dialogBox.center();
-            closeButton.setFocus(true);
-          }
-        });
-      }
-    }
-
-    // Add a handler to send the name to the server
-    MyHandler handler = new MyHandler();
-    sendButton.addClickHandler(handler);
-    nameField.addKeyUpHandler(handler);
-  }
 }
