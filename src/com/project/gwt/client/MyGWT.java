@@ -5,26 +5,17 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Display;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.KeyCodes;
-import com.google.gwt.event.dom.client.KeyUpEvent;
-import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.DialogBox;
-import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
-import com.google.gwt.user.client.ui.VerticalPanel;
 import com.project.gwt.shared.Data;
 
 public class MyGWT implements EntryPoint {
-	private static final String SERVER_ERROR = "An error occurred while "
-			+ "attempting to contact the server. Please check your network "
-			+ "connection and try again.";
 	
 	private final DataServiceAsync dataService = GWT.create(DataService.class);
 	private final LoginServiceAsync loginService = GWT.create(LoginService.class);
@@ -42,30 +33,24 @@ public class MyGWT implements EntryPoint {
 		final Label phoneEditLabel = new Label();
 		final Label emailEditLabel = new Label();
 		
-		final Button loginButton = new Button("Zaloguj");
-    
+		final Button loginButton = new Button("Zaloguj");    
     
     // Elementy edycji wizytówki
 		final Label nameLabel = new Label();
 		nameLabel.setText("Imie i nazwisko");
 		final TextBox nameField = new TextBox();
-		
 		final Label adressLabel = new Label();
 		adressLabel.setText("Adres");
 		final TextBox adressField = new TextBox();
-	   
 		final Label phoneLabel = new Label();
 		phoneLabel.setText("Telefon");
 	    final TextBox phoneField = new TextBox();
-	    
 	    final Label emailLabel = new Label();
 	    emailLabel.setText("Email");
 	    final TextBox emailField = new TextBox();
-	    
 	    final Label pictureLabel = new Label();
 	    pictureLabel.setText("Obrazek (URL)");
 	    final TextBox pictureField = new TextBox();
-	    
 	    final Label loginLabel = new Label();
 	    loginLabel.setText("Login");
 	    final TextBox loginField = new TextBox();
@@ -202,28 +187,6 @@ public class MyGWT implements EntryPoint {
 			}
 	    	
 	    });
-	    
-
-	    // Create the popup dialog box
-	    /*
-	    final DialogBox dialogBox = new DialogBox();
-	    dialogBox.setText("Remote Procedure Call");
-	    dialogBox.setAnimationEnabled(true);
-	    final Button closeButton = new Button("Close");
-	    // We can set the id of a widget by accessing its Element
-	    closeButton.getElement().setId("closeButton");
-	    final Label textToServerLabel = new Label();
-	    final HTML serverResponseLabel = new HTML();
-	    VerticalPanel dialogVPanel = new VerticalPanel();
-	    dialogVPanel.addStyleName("dialogVPanel");
-	    dialogVPanel.add(new HTML("<b>Sending name to the server:</b>"));
-	    dialogVPanel.add(textToServerLabel);
-	    dialogVPanel.add(new HTML("<br><b>Server replies:</b>"));
-	    dialogVPanel.add(serverResponseLabel);
-	    dialogVPanel.setHorizontalAlignment(VerticalPanel.ALIGN_RIGHT);
-	    dialogVPanel.add(closeButton);
-	    dialogBox.setWidget(dialogVPanel);
-	    */
 
 	}
 
