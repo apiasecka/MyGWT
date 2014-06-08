@@ -1,0 +1,2 @@
+serviceClass: com.project.gwt.client.DataService
+path: 4CB3C0FDC0D7E05757059DF772C230AA.gwt.rpc

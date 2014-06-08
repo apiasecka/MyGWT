@@ -2,6 +2,10 @@
 
 
 /** Example rules used by the template application (remove for your app) */
+
+body {
+	padding-top: 20px !important;
+}
 h1 {
   font-size: 2em;
   font-weight: bold;
@@ -14,7 +18,7 @@ h1 {
 	margin: 0 auto;
 }
 
-.Button {
+.gwt-Button {
   display: inline-block;
   font-size: 16pt;
   margin: 20px 10px 0 !important;
@@ -40,22 +44,50 @@ h1 {
 }
 
 #edit, #card {
-	width: 800px;
+	width: 600px;
 	text-align: center;
 	margin: 0 auto;
 }
 
 #login {
 	width: 230px;
-	margin: 0 auto;
+	margin: 40px auto;
 }
 
-#login .gwt-TextBox {
+#login .gwt-TextBox, #login .gwt-PasswordTextBox {
 	float: right;
-	clear: both;
+	width: 160px;
 }
 
 #login .gwt-Label {
 	float: left;
 	clear: both;
+	margin-top: 5px;
 }
+#image {
+	float: left;
+}
+#text {
+	padding-top: 50px;
+}
+.gwt-Image {
+	width: 150px;
+}
+
+.gwt-PopupPanel {
+	left: 5% !important;
+	right: 5%;
+	text-align: center;
+}
+
+.clearfix:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+     }
+.clearfix { display: inline-block; }
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
